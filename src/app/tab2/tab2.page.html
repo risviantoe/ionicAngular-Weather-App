@@ -1,0 +1,104 @@
+<script src="//code.ionicframework.com/1.0.0-beta.12/js/ionic.bundle.js"></script>
+
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title size="large">Forecast ({{city}})</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content [fullscreen]="true">
+  <ion-list>
+    <!-- <button> -->
+    <div class="accordion-list"  *ngFor="let w of forecast; let i = index;">
+      <ion-item lines="none" tappable (click)="toggleSection(i)">
+        <!-- <ion-avatar slot="start">
+          <img class="icon" src="http://openweathermap.org/img/wn/{{w.weather[0].icon}}@2x.png">
+        </ion-avatar>
+        <ion-label>
+          <ion-row>
+          <ion-col>
+              {{w.weather[0].main}} - {{w.weather[0].description}} <br />
+              <small>{{w.dt_txt | date : 'dd MMM, h a'}}</small>
+          </ion-col>
+          <ion-col class="ion-text-right temp">
+            {{w.main.temp}} °C <br/>
+            <small>{{w.main.temp_min}} - {{w.main.temp_max}} °C</small>
+          </ion-col>
+          </ion-row>
+        </ion-label> -->
+        <ion-label>
+          <ion-row>
+            <ion-col>
+              <div style="min-width: 210px;">
+                {{w.weather[0].main}} - {{w.weather[0].description}} <br />
+                <small>{{w.dt_txt | date : 'dd MMM, h a'}}</small>
+              </div>
+            </ion-col>
+            <ion-col style="width: 30px;">
+              <div>
+                <ion-avatar style="width: 100%; height:100%">
+                  <img class="icon" src="http://openweathermap.org/img/wn/{{w.weather[0].icon}}@2x.png">
+                </ion-avatar>
+              </div>
+
+            </ion-col>
+            <ion-col class="ion-text-right">
+              <div style="margin-top:0px;">
+                {{w.main.temp}} °C <br />
+                <small>{{w.main.temp_max}} °C</small>
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-label>
+      </ion-item>
+      <ion-item class="detail-item" *ngIf="w.open" style="padding:0;transition: 0.09s all linear;">
+        <ion-grid style="margin-left:10px; padding:1;">
+          <ion-row style="margin:0">
+          <div style="width:84%;color:rgb(108, 110, 108)">
+          <ion-row>
+            <ion-col size="6">
+              <ion-icon name="leaf-outline"></ion-icon> Angin
+            </ion-col>
+            <ion-col size="1">
+              :
+            </ion-col>
+            <ion-col>
+              {{w.wind.speed}} m/s
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="6">
+              <ion-icon name="thermometer-outline"></ion-icon> Kelembapan
+            </ion-col>
+            <ion-col size="1">
+              :
+            </ion-col>
+            <ion-col>
+              {{w.main.humidity}}%
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="6">
+              <ion-icon name="water-outline"></ion-icon> Tekanan
+            </ion-col>
+            <ion-col size="1">
+              :
+            </ion-col>
+            <ion-col>
+              {{w.main.pressure}} hpa
+            </ion-col>
+          </ion-row>
+          </div>
+          <div style="margin:0">
+            <ion-buttons (click)="save(w)" slot="primary" style="height:90%;width:100%;margin:0;">
+              <ion-button fill="clear">
+                <ion-icon color="warning" name="star" slot="icon-only"></ion-icon>
+              </ion-button>
+            </ion-buttons>
+          </div>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+    </div>
+    <!-- </button> -->
+  </ion-list>
+</ion-content>

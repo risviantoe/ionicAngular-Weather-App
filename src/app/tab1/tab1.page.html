@@ -1,0 +1,39 @@
+<head>
+
+</head>
+
+<body>
+  <ion-content [fullscreen]="true">
+
+    <ion-header>
+      <ion-toolbar>
+        <ion-title size="large">Weather Now</ion-title>
+        <ion-buttons slot="primary" collapse="true" id="searchbtns">
+          <ion-button (click)="clickedSearchIcon($event)" fill="clear" id="search-toggle" expand="block">
+            <ion-icon name="search" slot="icon-only" showCancelButton="always"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-fab id="searchbar">
+      <ion-searchbar #q *ngIf="showSearchBar" (keyup.enter)="searchCity(q.value)"></ion-searchbar>
+    </ion-fab>
+
+    <div id="container">
+      <h1 class="ion-60p">{{city}}</h1>
+      <div *ngFor="let w of weather.weather">
+        <img class="icon" src="http://openweathermap.org/img/wn/{{w.icon}}@2x.png" />
+        <h1 class="ion-30p">
+          {{temp}} °C<br /><br />
+          {{w.main}} <small style="color:rgb(108, 110, 108)">({{w.description}})</small>
+        </h1>
+      </div>
+    </div>
+  </ion-content>
+
+  <script>
+    var x = document.getElementById("search-icon");
+    x.name="cloudy";
+  </script>
+</body>

@@ -1,0 +1,43 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Favorit
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <ion-list>
+    <!-- <button> -->
+    <div *ngFor="let f of fav" class="accordion-list">
+      <ion-item lines="none">
+        <ion-label>
+          <ion-row>
+            <ion-col>
+              <div style="min-width: 210px;">
+                {{city}} - {{f.main}} <br />
+                <small>{{f.date | date : 'dd MMM, h a'}}</small>
+              </div>
+            </ion-col>
+            <ion-col style="width: 30px;">
+              <div>
+                <ion-avatar style="width: 100%; height:100%">
+                  <img class="icon" src="http://openweathermap.org/img/wn/{{f.icon}}@2x.png">
+                </ion-avatar>
+              </div>
+
+            </ion-col>
+            <ion-col class="ion-text-right">
+              <div style="margin-top:0px;">
+                {{f.temp}} °C <br />
+                <small>{{f.temp_max}} °C</small>
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-label>
+      </ion-item>
+    </div>
+  </ion-list>
+
+</ion-content>
